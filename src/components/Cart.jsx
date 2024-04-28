@@ -2,11 +2,12 @@ import React from 'react';
 import { useCart } from './CartContext';
 import { Button } from 'react-bootstrap';
 
-function Cart() {
+function Cart({ closeCart }) {
   const { cart } = useCart();
 
   return (
     <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', position: 'fixed', top: 0, right: 0, bottom: 0, width: '300px', padding: '20px', color: 'white', overflowY: 'auto', textAlign: 'center' }}>
+      <Button style={{ position: 'absolute', top: '10px', right: '10px', backgroundColor: 'red' }} onClick={closeCart}>X</Button>
       <h2 style={{ fontFamily: 'Arial, sans-serif', fontWeight: 'bold', marginBottom: '20px' }}>Cart</h2>
       {cart.map((item) => (
         <div key={item.title} style={{ display: 'flex', borderBottom: '1px solid white', marginBottom: '10px' }}>
@@ -17,7 +18,6 @@ function Cart() {
             <div>Quantity: {item.quantity}</div>
             <Button variant="danger" size="sm" style={{backgroundColor: 'red', padding: '5px'}}>Remove</Button>
           </div>
-          
         </div>
       ))}
     </div>
