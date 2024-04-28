@@ -12,8 +12,8 @@ function Header({ toggleCart }) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <div style={{ backgroundColor: 'black', padding: '10px' }}>
-              <NavLink to="/" style={{ color: 'white', padding: '3rem' }}>HOME</NavLink>
-              <NavLink to="/content" style={{ color: 'white', padding: '3rem' }}>STORE</NavLink>
+              <NavLink to="/home" style={{ color: 'white', padding: '3rem' }}>HOME</NavLink>
+              <NavLink to="/" style={{ color: 'white', padding: '3rem' }}>STORE</NavLink>
               <NavLink to="/about" style={{ color: 'white', padding: '3rem' }}>ABOUT</NavLink>
               <Button style={{ color: 'white', marginLeft: '30px' }} onClick={toggleCart}>CART ({cart.length})</Button>
             </div>
