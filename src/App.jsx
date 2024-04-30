@@ -6,8 +6,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import About from './components/About/About';
 import ContactMe from './components/Contact/ContactMe';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
+import ProductDetail from './components/ProductDetail'; // Import the ProductDetail component
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -15,9 +16,11 @@ function App() {
   const toggleCart = () => {
     setShowCart(!showCart);
   };
+
   const closeCart = () => {
     setShowCart(false);
   };
+
   return (
     <Router>
       <CartProvider>
@@ -28,6 +31,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<ContactMe />} />
+            <Route path="/product/:productId" element={<ProductDetail />} /> 
           </Routes>
           <Footer />
           {showCart && <Cart closeCart={closeCart} />}
