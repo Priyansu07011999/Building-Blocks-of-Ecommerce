@@ -1,3 +1,4 @@
+
 import React, { useState, createContext, useContext } from 'react';
 
 const AuthContext = createContext();
@@ -15,8 +16,19 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('token');
   };
 
+  const isAuthenticated = () => {
+    return !!token;
+  };
+
+  const AuthGuard = ({ children }) => {
+    if (!isAuthenticated()) {
+      return <Navigate to="/login" />;
+    }
+    return children;
+  };
+
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ token, login, logout, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );
