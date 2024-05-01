@@ -1,9 +1,11 @@
 import React, { useState, createContext, useContext } from 'react';
+import { useAuth } from './Login/AuthContext';
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
+  const { token } = useAuth();
 
   const addToCart = (product) => {
     const existingProductIndex = cart.findIndex((item) => item.title === product.title);
@@ -18,7 +20,7 @@ export function CartProvider({ children }) {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart, token }}>
       {children}
     </CartContext.Provider>
   );
