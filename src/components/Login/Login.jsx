@@ -12,7 +12,7 @@ const Login = () => {
     const password = e.target.password.value;
 
     try {
-      const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDtdmfJq5vu4R3Hb4pMw-jcjhfkFv1jVWE`, {
+      const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[myapi]`, {
         method: 'POST',
         body: JSON.stringify({
           email: email,
