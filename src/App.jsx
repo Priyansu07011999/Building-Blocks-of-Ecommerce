@@ -1,3 +1,4 @@
+// App.js
 import React, { useState } from 'react';
 import { CartProvider } from './components/CartContext';
 import AppContent from './components/Contents';
@@ -8,9 +9,9 @@ import About from './components/About/About';
 import ContactMe from './components/Contact/ContactMe';
 import Home from './components/Home/Home';
 import ProductDetail from './components/ProductDetail'; // Import the ProductDetail component
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Login/Login';
 import { AuthProvider } from './components/Login/AuthContext'; // Import the AuthProvider
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -25,10 +26,10 @@ function App() {
 
   return (
     <Router>
-      <AuthProvider> {/* Wrap your entire application with AuthProvider */}
+      <AuthProvider>
         <CartProvider>
           <div>
-            <Header toggleCart={toggleCart} cartLength={Cart.length} />
+            <Header toggleCart={toggleCart} />
             <Routes>
               <Route path="/" element={<AppContent />} />
               <Route path="/home" element={<Home />} />
