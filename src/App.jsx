@@ -9,6 +9,8 @@ import ContactMe from './components/Contact/ContactMe';
 import Home from './components/Home/Home';
 import ProductDetail from './components/ProductDetail'; // Import the ProductDetail component
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './components/Login/Login';
+import { AuthProvider } from './components/Login/AuthContext'; // Import the AuthProvider
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -23,20 +25,23 @@ function App() {
 
   return (
     <Router>
-      <CartProvider>
-        <div>
-          <Header toggleCart={toggleCart} cartLength={Cart.length} />
-          <Routes>
-            <Route path="/" element={<AppContent />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<ContactMe />} />
-            <Route path="/product/:productId" element={<ProductDetail />} /> 
-          </Routes>
-          <Footer />
-          {showCart && <Cart closeCart={closeCart} />}
-        </div>
-      </CartProvider>
+      <AuthProvider> {/* Wrap your entire application with AuthProvider */}
+        <CartProvider>
+          <div>
+            <Header toggleCart={toggleCart} cartLength={Cart.length} />
+            <Routes>
+              <Route path="/" element={<AppContent />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/contact" element={<ContactMe />} />
+              <Route path="/product/:productId" element={<ProductDetail />} /> 
+            </Routes>
+            <Footer />
+            {showCart && <Cart closeCart={closeCart} />}
+          </div>
+        </CartProvider>
+      </AuthProvider>
     </Router>
   );
 }
